@@ -30,10 +30,16 @@
         </header>
 
         <main>
-            <section id="best_movie"></section>
-            <section id="top_rated_movies"></section>
+            <section id="best_movie" class="carousel"></section>
+            <section id="top_rated_movies" class="carousel"></section>
             <section id="categories"></section>
         </main>
-        <script src="../js/script.js"></script>
+
+        <aside id="modal" class="modal-box" style="display: none">
+            <div class="modal-wrapper">
+                <p class="modal-close" onclick="closeModal()">Fermer</p>
+            </div>
+        </aside>
     </body>
+    <script src="../js/script.js"></script>
 </html>

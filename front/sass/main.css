@@ -8,11 +8,10 @@
 }
 
 body {
-  max-width: 1400px;
+  max-width: 1000px;
 }
 
-a,
-address {
+a {
   text-decoration: none;
   font-style: normal;
   color: inherit;
@@ -53,7 +52,46 @@ section h2 {
   text-align: center;
 }
 
-header {
-  background-color: #353535;
+.btn-modal {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.modalImg {
+  cursor: pointer;
+}
+
+.btn-play {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper {
+  overflow: auto;
+  background-color: white;
+  width: 750px;
+  margin-top: 60px;
+  max-height: calc(100vh - 100px);
+  padding: 20px;
+}
+
+.modal-close {
+  color: red;
 }
 /*# sourceMappingURL=main.css.map */

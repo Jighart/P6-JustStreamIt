@@ -1,5 +1,8 @@
-getTopRated()
+const numberOfCategories = 3
+const moviesPerCategory = 7
+
 getCategories()
+getTopRated()
 
 async function getTopRated() {
     try {
@@ -20,7 +23,7 @@ async function getTopRated() {
         console.error(error)
     }
     fillBestMovie(topMovies[0])
-    fillTopRatedMovies(topMovies.slice(1, 8))
+    fillTopRatedMovies(topMovies.slice(1, moviesPerCategory + 1))
 }
 
 async function getTopCat(cat) {
@@ -41,7 +44,7 @@ async function getTopCat(cat) {
     } catch (error) {
         console.error(error)
     }
-    fillCategories(movies.slice(0, 7), cat)
+    fillCategories(movies.slice(0, moviesPerCategory), cat)
 }
 
 function fillBestMovie(bestMovie) {
@@ -50,25 +53,23 @@ function fillBestMovie(bestMovie) {
     items.insertAdjacentHTML(
         'beforeEnd',
         `<h2>${bestMovie.title}</h2>
-        <button class="button">► Play</button>
-        <img src="${bestMovie.image_url}">
+        <button class="btn-play">► Play</button>
+        <img src="${bestMovie.image_url}" class="modalImg" alt="Affiche du film" data-id="${bestMovie.id}" onclick=openModal(${bestMovie.id})>
         `
     )
 }
 
 function fillTopRatedMovies(topMovies) {
     let items = document.querySelector('#top_rated_movies')
+    items.insertAdjacentHTML('beforeEnd', `<h2>Films les mieux notés</h2>`)
     for (let movie of topMovies)
         items.insertAdjacentHTML(
             'beforeEnd',
-            `
-            <img src="${movie.image_url}">
-            `
+            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" data-id="${movie.id}" onclick=openModal(${movie.id})>`
         )
 }
 
 function getCategories() {
-    numberOfCategories = 3
     let categoriesList = [
         'History',
         'Drama',
@@ -109,13 +110,80 @@ function getCategories() {
 
 function fillCategories(movies, cat) {
     console.log(cat)
-    let items = document.querySelector('#categories')
-    items.insertAdjacentHTML('beforeEnd', `<h2>${cat}</h2>`)
-    //console.log(movies)
-    for (let movie of movies)
-        items.insertAdjacentHTML(
+    document
+        .querySelector('#categories')
+        .insertAdjacentHTML(
             'beforeEnd',
-            `<img src="${movie.image_url}">
+            `<div class="category carousel"></div>`
+        )
+    let catHTML = document.querySelector('.category.carousel')
+    catHTML.insertAdjacentHTML('beforeEnd', `<h2>${cat}</h2>`)
+    //console.log(movies)
+    for (let movie of movies) {
+        catHTML.insertAdjacentHTML(
+            'beforeEnd',
+            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" data-id="${movie.id}" onclick=openModal(${movie.id}) />
             `
         )
+    }
+}
+
+async function openModal(id) {
+    let modal = document.querySelector('#modal')
+    let modalWrapper = document.querySelector('.modal-wrapper')
+
+    //let movie = document.querySelector(`[data-id="${id}"]`)
+    //console.log(movie)
+    await fetch(`http://localhost:8000/api/v1/titles/${id}`)
+        .then((res) => {
+            return res.json()
+        })
+        .then(async function (responseAPI) {
+            let movie = await responseAPI
+            fillModal(movie)
+        })
+        .catch((error) => console.error(error))
+
+    modal.style.display = null
+}
+
+function closeModal() {
+    let modalWrapper = document.querySelector('.modal-wrapper')
+    modal.style.display = 'none'
+    modalWrapper.innerHTML =
+        '<p class="modal-close" onclick="closeModal()">Fermer</p>'
+}
+
+function fillModal(movie) {
+    let modalWrapper = document.querySelector('.modal-wrapper')
+    console.log(movie)
+
+    modalWrapper.insertAdjacentHTML(
+        'beforeEnd',
+        `<img src="${movie.image_url}" class="modal-image" alt="${
+            movie.title
+        }" />
+        <h3 class="modal-title">${movie.title}</h3>
+        <p class="modal-year-country">Sorti en ${movie.year}, ${
+            movie.countries
+        }</p>
+        <p class="modal-genres">Genre : ${movie.genres.join(', ')}</p>
+        <p class="modal-duration">Durée : ${movie.duration} minutes</p>
+        <p class="modal-score">Score IMDB : ${movie.imdb_score} (${
+            movie.votes
+        } votes)</p>
+        <p class="modal-rated">Rated : ${movie.rated}</p>
+        <p class="modal-directors">Réalisé par : ${movie.directors.join(
+            ', '
+        )}</p>
+        <p class="modal-box-office">Box office : ${
+            movie.worldwide_gross_income !== null
+                ? movie.worldwide_gross_income + ' ' + movie.budget_currency
+                : 'N/A'
+        }</p>
+
+        <p class="modal-description">${movie.long_description}</p>
+        <p class="modal-actors">Avec : ${movie.actors.join(', ')}</p>
+        `
+    )
 }
