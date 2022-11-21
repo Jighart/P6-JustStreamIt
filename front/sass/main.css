@@ -1,0 +1,59 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 auto;
+  font-family: 'Titillium Web', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  max-width: 1400px;
+}
+
+a,
+address {
+  text-decoration: none;
+  font-style: normal;
+  color: inherit;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #353535;
+  font-weight: 200;
+  padding-left: 3em;
+  height: 60px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header h1 {
+  font-weight: 200;
+  width: 100%;
+}
+
+header nav {
+  width: 100%;
+  font-size: 22px;
+}
+
+header nav ul a {
+  padding-left: 1em;
+}
+
+section {
+  margin-top: 3em;
+}
+
+section h2 {
+  text-align: center;
+}
+
+header {
+  background-color: #353535;
+}
+/*# sourceMappingURL=main.css.map */
