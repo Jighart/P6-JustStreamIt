@@ -1,6 +1,39 @@
 section {
-    margin-top: 3em;
+    margin-top: 5em;
     h2 {
         text-align: center;
+        margin-bottom: 1em;
     }
+    & div.carousel {
+        margin-top: 5em;
+    }
+}
+
+#best_movie {
+    border: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .featured__left {
+        width: 40%;
+        text-align: center;
+    }
+    h2 {
+        font-size: 36px;
+    }
+    .btn-play {
+        font-size: 18px;
+        text-align: center;
+        width: 25%;
+        background-color: red;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.modalImg {
+    cursor: pointer;
+    padding: 20px;
 }

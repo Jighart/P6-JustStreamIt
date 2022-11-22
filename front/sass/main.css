@@ -44,35 +44,6 @@ header nav ul a {
   padding-left: 1em;
 }
 
-section {
-  margin-top: 3em;
-}
-
-section h2 {
-  text-align: center;
-}
-
-.btn-modal {
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 5px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.modalImg {
-  cursor: pointer;
-}
-
-.btn-play {
-  background-color: red;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .modal-box {
   position: fixed;
   top: 0;
@@ -83,15 +54,108 @@ section h2 {
 }
 
 .modal-wrapper {
-  overflow: auto;
   background-color: white;
   width: 750px;
   margin-top: 60px;
+  max-width: calc(100vw - 100px);
   max-height: calc(100vh - 100px);
   padding: 20px;
 }
 
 .modal-close {
-  color: red;
+  width: 100%;
+  text-align: right;
+}
+
+.modal__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.modal__top--right {
+  width: 50%;
+}
+
+.modal__top--right h3 {
+  font-size: 30px;
+  padding-bottom: 1em;
+}
+
+.modal-description {
+  padding-bottom: 1em;
+}
+
+section {
+  margin-top: 5em;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+section div.carousel {
+  margin-top: 5em;
+}
+
+#best_movie {
+  border: 3px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#best_movie .featured__left {
+  width: 40%;
+  text-align: center;
+}
+
+#best_movie h2 {
+  font-size: 36px;
+}
+
+#best_movie .btn-play {
+  font-size: 18px;
+  text-align: center;
+  width: 25%;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.modalImg {
+  cursor: pointer;
+  padding: 20px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel__container {
+  width: 175%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 /*# sourceMappingURL=main.css.map */

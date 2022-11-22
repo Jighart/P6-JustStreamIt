@@ -48,25 +48,29 @@ async function getTopCat(cat) {
 }
 
 function fillBestMovie(bestMovie) {
-    let items = document.querySelector('#best_movie')
-    //console.log(bestMovie)
-    items.insertAdjacentHTML(
+    let best = document.querySelector('#best_movie')
+    best.insertAdjacentHTML(
         'beforeEnd',
-        `<h2>${bestMovie.title}</h2>
-        <button class="btn-play">► Play</button>
-        <img src="${bestMovie.image_url}" class="modalImg" alt="Affiche du film" data-id="${bestMovie.id}" onclick=openModal(${bestMovie.id})>
+        `<div class="featured__left"><h2>${bestMovie.title}</h2>
+        <button class="btn-play">► Play</button></div>
+        <img src="${bestMovie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${bestMovie.id})>
         `
     )
 }
 
 function fillTopRatedMovies(topMovies) {
     let items = document.querySelector('#top_rated_movies')
-    items.insertAdjacentHTML('beforeEnd', `<h2>Films les mieux notés</h2>`)
+    items.insertAdjacentHTML(
+        'beforeEnd',
+        `<h2>Films les mieux notés</h2><div class="carousel__container" id="carousel__topRated"></div>`
+    )
     for (let movie of topMovies)
-        items.insertAdjacentHTML(
-            'beforeEnd',
-            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" data-id="${movie.id}" onclick=openModal(${movie.id})>`
-        )
+        document
+            .querySelector('#carousel__topRated')
+            .insertAdjacentHTML(
+                'beforeEnd',
+                `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
+            )
 }
 
 function getCategories() {
@@ -104,25 +108,26 @@ function getCategories() {
         category = categoriesList[(categoriesList.length * Math.random()) | 0]
         getTopCat(category)
         categoriesList = categoriesList.filter((cat) => cat !== category)
+        document
+            .querySelector('#categories')
+            .insertAdjacentHTML(
+                'beforeEnd',
+                `<div class="carousel" id="category__${category}"></div>`
+            )
         n++
     }
+    //createCarousel()
 }
 
 function fillCategories(movies, cat) {
     console.log(cat)
-    document
-        .querySelector('#categories')
-        .insertAdjacentHTML(
-            'beforeEnd',
-            `<div class="category carousel"></div>`
-        )
-    let catHTML = document.querySelector('.category.carousel')
+
+    let catHTML = document.querySelector(`#category__${cat}`)
     catHTML.insertAdjacentHTML('beforeEnd', `<h2>${cat}</h2>`)
-    //console.log(movies)
     for (let movie of movies) {
         catHTML.insertAdjacentHTML(
             'beforeEnd',
-            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" data-id="${movie.id}" onclick=openModal(${movie.id}) />
+            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
             `
         )
     }
@@ -130,10 +135,7 @@ function fillCategories(movies, cat) {
 
 async function openModal(id) {
     let modal = document.querySelector('#modal')
-    let modalWrapper = document.querySelector('.modal-wrapper')
 
-    //let movie = document.querySelector(`[data-id="${id}"]`)
-    //console.log(movie)
     await fetch(`http://localhost:8000/api/v1/titles/${id}`)
         .then((res) => {
             return res.json()
@@ -156,17 +158,18 @@ function closeModal() {
 
 function fillModal(movie) {
     let modalWrapper = document.querySelector('.modal-wrapper')
-    console.log(movie)
 
     modalWrapper.insertAdjacentHTML(
         'beforeEnd',
-        `<img src="${movie.image_url}" class="modal-image" alt="${
-            movie.title
-        }" />
+        `<div class="modal__top">
+        <img src="${
+            movie.image_url
+        }" class="modal-image modal__top--left" alt="${movie.title}" />
+        <div class="modal__top--right">
         <h3 class="modal-title">${movie.title}</h3>
-        <p class="modal-year-country">Sorti en ${movie.year}, ${
-            movie.countries
-        }</p>
+        <p class="modal-year-country">Sorti en ${
+            movie.year
+        }, ${movie.countries.join(', ')}</p>
         <p class="modal-genres">Genre : ${movie.genres.join(', ')}</p>
         <p class="modal-duration">Durée : ${movie.duration} minutes</p>
         <p class="modal-score">Score IMDB : ${movie.imdb_score} (${
@@ -180,10 +183,31 @@ function fillModal(movie) {
             movie.worldwide_gross_income !== null
                 ? movie.worldwide_gross_income + ' ' + movie.budget_currency
                 : 'N/A'
-        }</p>
+        }</p></div></div>
 
         <p class="modal-description">${movie.long_description}</p>
         <p class="modal-actors">Avec : ${movie.actors.join(', ')}</p>
         `
     )
 }
+
+// class Carousel {
+//     constructor(element, options = {}) {
+//         this.element = element
+//         this.options = Object.assign(
+//             {},
+//             {
+//                 slidesToScroll: 1,
+//                 slidesVisible: 1,
+//             },
+//             options
+//         )
+//         //let ratio = this.options.slidesToScroll / this.options.slidesVisible
+//         console.log(ratio)
+//     }
+// }
+
+// new Carousel(document.querySelectorAll('.carousel'), {
+//     slidesToScroll: 7,
+//     slidesVisible: 4,
+// })
