@@ -5,12 +5,15 @@
 }
 
 .carousel__container {
-    //position: absolute;
+    position: relative;
     width: 175%;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    //flex-wrap: nowrap;
+    align-items: center;
+    transition: all 1s ease;
+    left: 0;
 }
 
 // .carousel__container::after {
@@ -18,3 +21,21 @@
 //     clear: both;
 //     display: table;
 // }
+
+.fa-chevron-circle-left {
+    position: absolute;
+    left: 0px;
+    opacity: 75%;
+    font-size: 2em;
+    bottom: 40%;
+    z-index: 2;
+}
+
+.fa-chevron-circle-right {
+    position: absolute;
+    right: 0;
+    opacity: 75%;
+    font-size: 2em;
+    bottom: 40%;
+    z-index: 2;
+}

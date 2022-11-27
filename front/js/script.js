@@ -62,7 +62,11 @@ function fillTopRatedMovies(topMovies) {
     let items = document.querySelector('#top_rated_movies')
     items.insertAdjacentHTML(
         'beforeEnd',
-        `<h2>Films les mieux notés</h2><div class="carousel__container" id="carousel__topRated"></div>`
+        `
+        <i class="fas fa-chevron-circle-left" onclick="moveCarouselRight(carousel__topRated)"></i>
+        <i class="fas fa-chevron-circle-right" onclick="moveCarouselLeft(carousel__topRated)"></i>
+        <h2>Films les mieux notés</h2><div class="carousel__container" id="carousel__topRated"></div>
+        `
     )
     for (let movie of topMovies)
         document
@@ -123,7 +127,12 @@ function fillCategories(movies, cat) {
     console.log(cat)
 
     let catHTML = document.querySelector(`#category__${cat}`)
-    catHTML.insertAdjacentHTML('beforeEnd', `<h2>${cat}</h2>`)
+    catHTML.insertAdjacentHTML(
+        'beforeEnd',
+        `<h2>${cat}</h2>
+        <i class="fas fa-chevron-circle-left"></i>
+        <i class="fas fa-chevron-circle-right"></i>`
+    )
     for (let movie of movies) {
         catHTML.insertAdjacentHTML(
             'beforeEnd',
@@ -211,3 +220,11 @@ function fillModal(movie) {
 //     slidesToScroll: 7,
 //     slidesVisible: 4,
 // })
+
+function moveCarouselLeft(selected) {
+    selected.style.left = '-75%'
+}
+
+function moveCarouselRight(selected) {
+    selected.style.left = '0'
+}

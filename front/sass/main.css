@@ -28,6 +28,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: white;
 }
 
 header h1 {
@@ -146,6 +147,7 @@ section div.carousel {
 }
 
 .carousel__container {
+  position: relative;
   width: 175%;
   overflow: hidden;
   display: -webkit-box;
@@ -155,7 +157,29 @@ section div.carousel {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  left: 0;
+}
+
+.fa-chevron-circle-left {
+  position: absolute;
+  left: 0px;
+  opacity: 75%;
+  font-size: 2em;
+  bottom: 40%;
+  z-index: 2;
+}
+
+.fa-chevron-circle-right {
+  position: absolute;
+  right: 0;
+  opacity: 75%;
+  font-size: 2em;
+  bottom: 40%;
+  z-index: 2;
 }
 /*# sourceMappingURL=main.css.map */
