@@ -64,8 +64,9 @@ header nav ul a {
 }
 
 .modal-close {
-  width: 100%;
+  font-size: 18px;
   text-align: right;
+  cursor: pointer;
 }
 
 .modal__top {
@@ -94,15 +95,15 @@ section {
 
 section h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
 
 section div.carousel {
-  margin-top: 5em;
+  margin-top: 3em;
 }
 
 #best_movie {
   border: 3px solid black;
+  padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,9 +136,19 @@ section div.carousel {
   cursor: pointer;
 }
 
-.modalImg {
+.filmImg {
   cursor: pointer;
-  padding: 20px;
+  -webkit-box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+          box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  -webkit-transition: scale 200ms;
+  transition: scale 200ms;
+}
+
+.filmImg:hover {
+  scale: 1.1;
+  -webkit-transition: scale 200ms;
+  transition: scale 200ms;
 }
 
 .carousel {
@@ -149,7 +160,6 @@ section div.carousel {
 .carousel__container {
   position: relative;
   width: 175%;
-  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -157,29 +167,31 @@ section div.carousel {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   left: 0;
+  padding: 20px 0 20px 0;
 }
 
 .fa-chevron-circle-left {
   position: absolute;
-  left: 0px;
-  opacity: 75%;
-  font-size: 2em;
+  left: 0;
+  opacity: 60%;
+  font-size: 1.5em;
   bottom: 40%;
   z-index: 2;
+  cursor: pointer;
 }
 
 .fa-chevron-circle-right {
   position: absolute;
   right: 0;
-  opacity: 75%;
-  font-size: 2em;
+  opacity: 60%;
+  font-size: 1.5em;
   bottom: 40%;
   z-index: 2;
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */

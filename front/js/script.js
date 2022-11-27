@@ -1,9 +1,9 @@
 const numberOfCategories = 3
-const moviesPerCategory = 7
 
 getCategories()
 getTopRated()
 
+// Get data for the top overall rated movies, returns the first 1+7
 async function getTopRated() {
     try {
         var data = await Promise.all([
@@ -23,9 +23,10 @@ async function getTopRated() {
         console.error(error)
     }
     fillBestMovie(topMovies[0])
-    fillTopRatedMovies(topMovies.slice(1, moviesPerCategory + 1))
+    fillTopRatedMovies(topMovies.slice(1, 7 + 1))
 }
 
+// Get data for top rated movies for a specified category, returns the first 7
 async function getTopCat(cat) {
     try {
         var data = await Promise.all([
@@ -44,28 +45,30 @@ async function getTopCat(cat) {
     } catch (error) {
         console.error(error)
     }
-    fillCategories(movies.slice(0, moviesPerCategory), cat)
+    fillCategories(movies.slice(0, 7), cat)
 }
 
+// Fills the best movie with the top movie's data from the top rated list
 function fillBestMovie(bestMovie) {
     let best = document.querySelector('#best_movie')
     best.insertAdjacentHTML(
         'beforeEnd',
         `<div class="featured__left"><h2>${bestMovie.title}</h2>
         <button class="btn-play">► Play</button></div>
-        <img src="${bestMovie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${bestMovie.id})>
+        <img src="${bestMovie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${bestMovie.id})>
         `
     )
 }
 
+// Fills the top category with movies 2-8 from the top rated list
 function fillTopRatedMovies(topMovies) {
     let items = document.querySelector('#top_rated_movies')
     items.insertAdjacentHTML(
         'beforeEnd',
-        `
+        `<h2>Films les mieux notés</h2>
         <i class="fas fa-chevron-circle-left" onclick="moveCarouselRight(carousel__topRated)"></i>
         <i class="fas fa-chevron-circle-right" onclick="moveCarouselLeft(carousel__topRated)"></i>
-        <h2>Films les mieux notés</h2><div class="carousel__container" id="carousel__topRated"></div>
+        <div class="carousel__container" id="carousel__topRated"></div>
         `
     )
     for (let movie of topMovies)
@@ -73,10 +76,11 @@ function fillTopRatedMovies(topMovies) {
             .querySelector('#carousel__topRated')
             .insertAdjacentHTML(
                 'beforeEnd',
-                `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
+                `<img src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
             )
 }
 
+// List of categories, disabled categories with less than 5 movies or with top movies pictures returning a 404 error from Amazon
 function getCategories() {
     let categoriesList = [
         'History',
@@ -99,15 +103,16 @@ function getCategories() {
         'Crime',
         'Action',
         'Thriller',
-        'Western',
+        //'Western',
         'Mystery',
         //'Reality-TV',
-        'War',
+        //'War',
         'Musical',
     ]
-    let n = 0
 
     // Picks a random category and removes it from the list until number of categories is reached
+    let n = 0
+
     while (n < numberOfCategories) {
         category = categoriesList[(categoriesList.length * Math.random()) | 0]
         getTopCat(category)
@@ -120,9 +125,9 @@ function getCategories() {
             )
         n++
     }
-    //createCarousel()
 }
 
+// Creates the HTML block for each category and fills it with movies data
 function fillCategories(movies, cat) {
     console.log(cat)
 
@@ -130,18 +135,20 @@ function fillCategories(movies, cat) {
     catHTML.insertAdjacentHTML(
         'beforeEnd',
         `<h2>${cat}</h2>
-        <i class="fas fa-chevron-circle-left"></i>
-        <i class="fas fa-chevron-circle-right"></i>`
+        <i class="fas fa-chevron-circle-left" onclick="moveCarouselRight(carousel__${cat})"></i>
+        <i class="fas fa-chevron-circle-right" onclick="moveCarouselLeft(carousel__${cat})"></i>
+        <div class="carousel__container" id="carousel__${cat}"></div>`
     )
     for (let movie of movies) {
-        catHTML.insertAdjacentHTML(
+        document.querySelector(`#carousel__${cat}`).insertAdjacentHTML(
             'beforeEnd',
-            `<img src="${movie.image_url}" class="modalImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
+            `<img src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
             `
         )
     }
 }
 
+// Makes the modal window visible and fetches the movie's data
 async function openModal(id) {
     let modal = document.querySelector('#modal')
 
@@ -158,6 +165,7 @@ async function openModal(id) {
     modal.style.display = null
 }
 
+// Makes the modal window invisible and clears the HTML content
 function closeModal() {
     let modalWrapper = document.querySelector('.modal-wrapper')
     modal.style.display = 'none'
@@ -165,6 +173,7 @@ function closeModal() {
         '<p class="modal-close" onclick="closeModal()">Fermer</p>'
 }
 
+// Fills the modal window with the movie's data
 function fillModal(movie) {
     let modalWrapper = document.querySelector('.modal-wrapper')
 
@@ -200,31 +209,11 @@ function fillModal(movie) {
     )
 }
 
-// class Carousel {
-//     constructor(element, options = {}) {
-//         this.element = element
-//         this.options = Object.assign(
-//             {},
-//             {
-//                 slidesToScroll: 1,
-//                 slidesVisible: 1,
-//             },
-//             options
-//         )
-//         //let ratio = this.options.slidesToScroll / this.options.slidesVisible
-//         console.log(ratio)
-//     }
-// }
-
-// new Carousel(document.querySelectorAll('.carousel'), {
-//     slidesToScroll: 7,
-//     slidesVisible: 4,
-// })
-
-function moveCarouselLeft(selected) {
-    selected.style.left = '-75%'
+// Slide functions for carousel buttons
+function moveCarouselLeft(carousel) {
+    carousel.style.left = '-75%'
 }
 
-function moveCarouselRight(selected) {
-    selected.style.left = '0'
+function moveCarouselRight(carousel) {
+    carousel.style.left = '0'
 }

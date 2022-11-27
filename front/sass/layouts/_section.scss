@@ -2,15 +2,15 @@ section {
     margin-top: 5em;
     h2 {
         text-align: center;
-        margin-bottom: 1em;
     }
     & div.carousel {
-        margin-top: 5em;
+        margin-top: 3em;
     }
 }
 
 #best_movie {
     border: 3px solid black;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +33,13 @@ section {
     }
 }
 
-.modalImg {
+.filmImg {
     cursor: pointer;
-    padding: 20px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: scale 200ms;
+    &:hover {
+        scale: 1.1;
+        transition: scale 200ms;
+    }
 }

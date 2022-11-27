@@ -7,35 +7,30 @@
 .carousel__container {
     position: relative;
     width: 175%;
-    overflow: hidden;
     display: flex;
     flex-direction: row;
-    //flex-wrap: nowrap;
-    align-items: center;
-    transition: all 1s ease;
+    flex-wrap: nowrap;
+    transition: all 0.5s ease;
     left: 0;
+    padding: 20px 0 20px 0;
 }
-
-// .carousel__container::after {
-//     content: '';
-//     clear: both;
-//     display: table;
-// }
 
 .fa-chevron-circle-left {
     position: absolute;
-    left: 0px;
-    opacity: 75%;
-    font-size: 2em;
+    left: 0;
+    opacity: 60%;
+    font-size: 1.5em;
     bottom: 40%;
     z-index: 2;
+    cursor: pointer;
 }
 
 .fa-chevron-circle-right {
     position: absolute;
     right: 0;
-    opacity: 75%;
-    font-size: 2em;
+    opacity: 60%;
+    font-size: 1.5em;
     bottom: 40%;
     z-index: 2;
+    cursor: pointer;
 }

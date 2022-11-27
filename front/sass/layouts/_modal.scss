@@ -1,6 +1,5 @@
 .modal-box {
     position: fixed;
-    //display: none;
     top: 0;
     left: 0;
     width: 100%;
@@ -15,14 +14,12 @@
     max-width: calc(100vw - 100px);
     max-height: calc(100vh - 100px);
     padding: 20px;
-    //display: flex;
-    //flex-direction: row;
 }
 
 .modal-close {
-    //color: red;
-    width: 100%;
+    font-size: 18px;
     text-align: right;
+    cursor: pointer;
 }
 
 .modal__top {
