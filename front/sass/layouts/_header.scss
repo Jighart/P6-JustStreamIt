@@ -13,8 +13,10 @@ header {
     & nav {
         width: 100%;
         font-size: 22px;
-        & ul a {
+        & ul li {
             padding-left: 1em;
+            list-style: none;
+            float: left;
         }
     }
 }

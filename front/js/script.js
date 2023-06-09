@@ -1,7 +1,10 @@
-const numberOfCategories = 3
+const numberOfCategories = 5
 
-getCategories()
 getTopRated()
+getCategories()
+
+let modal = document.querySelector('.modal-box')
+modal.style.display = 'none'
 
 // Get data for the top overall rated movies, returns the first 1+7
 async function getTopRated() {
@@ -129,8 +132,6 @@ function getCategories() {
 
 // Creates the HTML block for each category and fills it with movies data
 function fillCategories(movies, cat) {
-    console.log(cat)
-
     let catHTML = document.querySelector(`#category__${cat}`)
     catHTML.insertAdjacentHTML(
         'beforeEnd',
@@ -150,8 +151,6 @@ function fillCategories(movies, cat) {
 
 // Makes the modal window visible and fetches the movie's data
 async function openModal(id) {
-    let modal = document.querySelector('#modal')
-
     await fetch(`http://localhost:8000/api/v1/titles/${id}`)
         .then((res) => {
             return res.json()

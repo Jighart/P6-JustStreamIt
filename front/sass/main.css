@@ -1,8 +1,7 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0 auto;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,31 +17,26 @@ a {
 }
 
 header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-color: #353535;
   font-weight: 200;
   padding-left: 3em;
   height: 60px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   color: white;
 }
-
 header h1 {
   font-weight: 200;
   width: 100%;
 }
-
 header nav {
   width: 100%;
   font-size: 22px;
 }
-
-header nav ul a {
+header nav ul li {
   padding-left: 1em;
+  list-style: none;
+  float: left;
 }
 
 .modal-box {
@@ -70,16 +64,12 @@ header nav ul a {
 }
 
 .modal__top {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 2em;
 }
-
 .modal__top--right {
   width: 50%;
 }
-
 .modal__top--right h3 {
   font-size: 30px;
   padding-bottom: 1em;
@@ -92,11 +82,9 @@ header nav ul a {
 section {
   margin-top: 5em;
 }
-
 section h2 {
   text-align: center;
 }
-
 section div.carousel {
   margin-top: 3em;
 }
@@ -104,27 +92,17 @@ section div.carousel {
 #best_movie {
   border: 3px solid black;
   padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
-
 #best_movie .featured__left {
   width: 40%;
   text-align: center;
 }
-
 #best_movie h2 {
   font-size: 36px;
 }
-
 #best_movie .btn-play {
   font-size: 18px;
   text-align: center;
@@ -138,16 +116,12 @@ section div.carousel {
 
 .filmImg {
   cursor: pointer;
-  -webkit-box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
-          box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  -webkit-transition: scale 200ms;
   transition: scale 200ms;
 }
-
 .filmImg:hover {
   scale: 1.1;
-  -webkit-transition: scale 200ms;
   transition: scale 200ms;
 }
 
@@ -160,16 +134,9 @@ section div.carousel {
 .carousel__container {
   position: relative;
   width: 175%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-transition: all 0.5s ease;
+  flex-direction: row;
+  flex-wrap: nowrap;
   transition: all 0.5s ease;
   left: 0;
   padding: 20px 0 20px 0;
@@ -193,5 +160,4 @@ section div.carousel {
   bottom: 40%;
   z-index: 2;
   cursor: pointer;
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="../sass/main.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap"
-            rel="stylesheet"
-        />
-        <script
-            src="https://kit.fontawesome.com/9e9d04cfba.js"
-            crossorigin="anonymous"
-        ></script>
-        <title>JustStreamIt</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body>
-        <header>
-            <h1>JustStreamIt</h1>
-            <nav>
-                <ul>
-                    <a href="#">Accueil</a>
-                    <a href="#">Catégories</a>
-                </ul>
-            </nav>
-        </header>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../sass/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9e9d04cfba.js" crossorigin="anonymous"></script>
+    <title>JustStreamIt</title>
+</head>
 
-        <main>
-            <section id="best_movie"></section>
-            <section id="top_rated_movies" class="carousel"></section>
-            <section id="categories"></section>
-        </main>
+<body>
+    <header>
+        <h1>JustStreamIt</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Catégories</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <aside id="modal" class="modal-box" style="display: none">
-            <div class="modal-wrapper">
-                <p class="modal-close" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </p>
-            </div>
-        </aside>
-    </body>
+    <main>
+        <section id="best_movie"></section>
+        <section id="top_rated_movies" class="carousel"></section>
+        <section id="categories"></section>
+    </main>
+
+    <aside id="modal" class="modal-box">
+        <div class="modal-wrapper">
+            <p class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </p>
+        </div>
+    </aside>
+
     <script src="../js/script.js"></script>
+</body>
+
 </html>
