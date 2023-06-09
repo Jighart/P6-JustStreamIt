@@ -3,9 +3,6 @@ const numberOfCategories = 5
 getTopRated()
 getCategories()
 
-let modal = document.querySelector('.modal-box')
-modal.style.display = 'none'
-
 // Get data for the top overall rated movies, returns the first 1+7
 async function getTopRated() {
     try {
@@ -53,8 +50,7 @@ async function getTopCat(cat) {
 
 // Fills the best movie with the top movie's data from the top rated list
 function fillBestMovie(bestMovie) {
-    let best = document.querySelector('#best_movie')
-    best.insertAdjacentHTML(
+    best_movie.insertAdjacentHTML(
         'beforeEnd',
         `<div class="featured__left"><h2>${bestMovie.title}</h2>
         <button class="btn-play">► Play</button></div>
@@ -79,11 +75,11 @@ function fillTopRatedMovies(topMovies) {
             .querySelector('#carousel__topRated')
             .insertAdjacentHTML(
                 'beforeEnd',
-                `<img src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
+                `<img onerror="this.onerror=null;this.src='./no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
             )
 }
 
-// List of categories, disabled categories with less than 5 movies or with top movies pictures returning a 404 error from Amazon
+// List of categories, disabled categories with less than 5 movies
 function getCategories() {
     let categoriesList = [
         'History',
@@ -106,10 +102,10 @@ function getCategories() {
         'Crime',
         'Action',
         'Thriller',
-        //'Western',
+        'Western',
         'Mystery',
         //'Reality-TV',
-        //'War',
+        'War',
         'Musical',
     ]
 
@@ -140,10 +136,12 @@ function fillCategories(movies, cat) {
         <i class="fas fa-chevron-circle-right" onclick="moveCarouselLeft(carousel__${cat})"></i>
         <div class="carousel__container" id="carousel__${cat}"></div>`
     )
+
+    let category = document.querySelector(`#carousel__${cat}`)
     for (let movie of movies) {
-        document.querySelector(`#carousel__${cat}`).insertAdjacentHTML(
+        category.insertAdjacentHTML(
             'beforeEnd',
-            `<img src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
+            `<img onerror="this.src='../no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
             `
         )
     }
@@ -161,15 +159,16 @@ async function openModal(id) {
         })
         .catch((error) => console.error(error))
 
-    modal.style.display = null
+    modal.style.display = 'block'
 }
 
 // Makes the modal window invisible and clears the HTML content
 function closeModal() {
     let modalWrapper = document.querySelector('.modal-wrapper')
     modal.style.display = 'none'
-    modalWrapper.innerHTML =
-        '<p class="modal-close" onclick="closeModal()">Fermer</p>'
+    modalWrapper.innerHTML = `<p class="modal-close" onclick="closeModal()">
+        <i class="fas fa-times"></i>
+        </p>`
 }
 
 // Fills the modal window with the movie's data
