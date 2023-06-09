@@ -75,7 +75,7 @@ function fillTopRatedMovies(topMovies) {
             .querySelector('#carousel__topRated')
             .insertAdjacentHTML(
                 'beforeEnd',
-                `<img onerror="this.onerror=null;this.src='./no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
+                `<img onerror="this.onerror=null;this.src='../no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id})>`
             )
 }
 
@@ -141,7 +141,7 @@ function fillCategories(movies, cat) {
     for (let movie of movies) {
         category.insertAdjacentHTML(
             'beforeEnd',
-            `<img onerror="this.src='../no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
+            `<img onerror="this.onerror=null;this.src='../no-image.png'" src="${movie.image_url}" class="filmImg" alt="Affiche du film" onclick=openModal(${movie.id}) />
             `
         )
     }
